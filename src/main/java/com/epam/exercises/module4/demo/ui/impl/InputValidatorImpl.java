@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+import static com.epam.exercises.module4.demo.enums.Regex.*;
+
 @Service
 public class InputValidatorImpl implements InputValidator {
 
@@ -17,7 +19,7 @@ public class InputValidatorImpl implements InputValidator {
    */
   @Override
   public void validateName(String name){
-    if (!name.matches("^[a-zA-Z_ ]*$")) {
+    if (!name.matches(NAME_REGEX.getValue())) {
       throw new InvalidNameInputException(
                 "Please, enter valid name. Name can contain only letters!");
     }
@@ -29,7 +31,7 @@ public class InputValidatorImpl implements InputValidator {
    */
   @Override
   public void validateAccountNumber(String accountNumber) {
-    if (!accountNumber.matches("^[0-9]*$")) {
+    if (!accountNumber.matches(ACCOUNT_NUMBER_REGEX.getValue())) {
       throw new InvalidAccountNumberException(
                 "Please, enter valid account number. Account number can contain only numbers!");
     }
@@ -41,7 +43,7 @@ public class InputValidatorImpl implements InputValidator {
    */
   @Override
   public void validateBalanceInput(String balanceInput) {
-    if (!balanceInput.matches("^[0-9]+([.][0-9]*)?|[.][0-9]+$")) {
+    if (!balanceInput.matches(BALANCE_INPUT_REGEX.getValue())) {
       throw new InvalidBalanceInputException("Please, enter valid balance!");
     }
   }
@@ -66,7 +68,7 @@ public class InputValidatorImpl implements InputValidator {
    */
   @Override
   public void validateBirthInput(String birthInput) {
-    if (!birthInput.matches("\\d{4}-\\d{2}-\\d{2}")) {
+    if (!birthInput.matches(BIRTH_INPUT_REGEX.getValue())) {
       throw new InvalidBirthInputException(
                 "Please, enter valid birth value. Correct format of the birth date is YYYY-MM-DD!");
     }
@@ -78,7 +80,7 @@ public class InputValidatorImpl implements InputValidator {
    */
   @Override
   public void validateFirstBetOn(String firstBetOn) {
-    if (!firstBetOn.matches("^[0-9]*$") && !firstBetOn.equals("q")) {
+    if (!firstBetOn.matches(BET_ON_REGEX.getValue()) && !firstBetOn.equals("q")) {
       throw new InvalidBetInputException("Please, enter valid number or 'q' for quit");
     }
   }
