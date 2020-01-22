@@ -4,9 +4,11 @@ import com.epam.exercises.module4.demo.service.GameProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
+@EnableAspectJAutoProxy
 @PropertySource("application.properties")
 @PropertySource("messages-eng.properties")
 public class DemoApplication {
