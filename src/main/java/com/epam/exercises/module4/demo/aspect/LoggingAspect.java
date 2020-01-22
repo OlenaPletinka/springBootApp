@@ -24,9 +24,13 @@ public class LoggingAspect {
   @Around("applicationPointCut()")
   public void aroundExecution(ProceedingJoinPoint pjp) throws Throwable {
     long start = System.nanoTime();
-    Object[] signatureArgs = pjp.getArgs();
     pjp.proceed();
     long end = System.nanoTime();
+    logInfo(pjp, start, end);
+  }
+
+  private void logInfo(ProceedingJoinPoint pjp, long start, long end) {
+    Object[] signatureArgs = pjp.getArgs();
     Signature signature = pjp.getSignature();
     String methodName = signature.getName();
     Class returnType = ((MethodSignature) signature).getReturnType();
